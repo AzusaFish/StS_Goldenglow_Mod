@@ -1,6 +1,7 @@
 package com.azusafish;
 
 import basemod.BaseMod;
+import basemod.helpers.RelicType;
 import basemod.interfaces.EditCardsSubscriber;
 import basemod.interfaces.EditCharactersSubscriber;
 import basemod.interfaces.EditStringsSubscriber;
@@ -14,10 +15,14 @@ import com.google.gson.Gson;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 
+import basemod.interfaces.EditRelicsSubscriber;
+import com.megacrit.cardcrawl.localization.RelicStrings;
+import com.azusafish.relics.Sparkles;
+
 import java.nio.charset.StandardCharsets;
 
 @SpireInitializer
-public class GoldenglowMod implements EditCharactersSubscriber, EditCardsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber {
+public class GoldenglowMod implements EditCharactersSubscriber, EditCardsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber, EditRelicsSubscriber {
 
     public static final Color PINK_COLOR = new Color(1.0f, 0.46f, 0.66f, 1.0f);
 
@@ -66,6 +71,8 @@ public class GoldenglowMod implements EditCharactersSubscriber, EditCardsSubscri
     public void receiveEditStrings() {
         BaseMod.loadCustomStringsFile(CardStrings.class, "localization/eng/CardStrings.json");
         BaseMod.loadCustomStringsFile(OrbStrings.class, "localization/eng/OrbStrings.json");
+        BaseMod.loadCustomStringsFile(com.megacrit.cardcrawl.localization.PowerStrings.class, "localization/eng/PowerStrings.json");
+        BaseMod.loadCustomStringsFile(RelicStrings.class, "localization/eng/RelicStrings.json");
     }
 
     @Override
@@ -103,5 +110,10 @@ public class GoldenglowMod implements EditCharactersSubscriber, EditCardsSubscri
         public String PROPER_NAME;
         public String[] NAMES;
         public String DESCRIPTION;
+    }
+
+    @Override
+    public void receiveEditRelics() {
+        BaseMod.addRelicToCustomPool(new Sparkles(), GGEnums.GG_CARD_COLOR);
     }
 }

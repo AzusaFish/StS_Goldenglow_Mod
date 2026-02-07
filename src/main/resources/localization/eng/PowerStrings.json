@@ -1,0 +1,10 @@
+{
+    "AzusaFish:CurrentMark": {
+        "NAME": "Current Mark",
+        "DESCRIPTIONS": [
+        "Accumulated #b",
+        " static charge. (Max #b",
+        ") NL Detonate when a Spark is Evoked."
+        ]
+    }
+}

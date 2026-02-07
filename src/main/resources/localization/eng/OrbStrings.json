@@ -2,9 +2,9 @@
     "AzusaFish:Spark": {
         "NAME": "Spark",
         "DESCRIPTION": [
-        "End of Turn: Deal #b",
-        " damage to a random enemy. NL Evoke: Deal #b",
-        " damage to a random enemy."
+        "Target locked. NL End of Turn: Deal #b",
+        " damage (+1 per #yCurrent #yMark) and apply #b1 #yCurrent #yMark. NL Evoke: Detonate all Marks. Base #b",
+        " damage + #b3 per #yCurrent #yMark."
         ]
     }
 }

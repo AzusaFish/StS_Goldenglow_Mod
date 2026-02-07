@@ -4,8 +4,14 @@
         "NAMES": [
         "spark",
         "sparks",
-        "Spark"
+        "Spark",
+        "Sparks"
         ],
-        "DESCRIPTION": "A specialized Orb for Goldenglow. NL End of Turn: Deal #b3 damage. NL Evoke: Deal #b10 damage."
+        "DESCRIPTION": [
+        "A specialized Orb for Goldenglow NL",
+        "Target locked. NL End of Turn: Deal #b",
+        " damage (+1 per #yCurrent #yMark) and apply #b1 #yCurrent #yMark. NL Evoke: Detonate all Marks. Base #b",
+        " damage + #b3 per #yCurrent #yMark."
+        ]
     }
 ]

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class GoldenglowCharacter extends CustomPlayer {
     
     // 角色素材路径
-    // ⚠️ 确保这几张图是小的 (300px左右)，并且背景透明
+    // 确保这几张图是小的 (300px左右)，并且背景透明
     private static final String MY_CHARACTER_SHOULDER_1 = "images/char/goldenglow/shoulder.png";
     private static final String MY_CHARACTER_SHOULDER_2 = "images/char/goldenglow/shoulder.png";
     private static final String MY_CHARACTER_CORPSE = "images/char/goldenglow/corpse.png"; 
@@ -73,7 +73,7 @@ public class GoldenglowCharacter extends CustomPlayer {
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
         // 暂时使用铁甲战士的燃烧之血
-        retVal.add("Burning Blood"); 
+        retVal.add("AzusaFish:Sparkles");
         return retVal;
     }
 
