@@ -20,7 +20,7 @@ public class Defend extends CustomCard {
         super(ID, "Defend", IMG_PATH, COST, "Gain !B! Block.", 
               CardType.SKILL, 
               GGEnums.GG_CARD_COLOR, // ✅ 绑定粉色
-              CardRarity.BASIC, 
+              CardRarity.COMMON,     // 暂时改为 COMMON 以防止奖励池死循环
               CardTarget.SELF);
 
         this.baseBlock = BLOCK;

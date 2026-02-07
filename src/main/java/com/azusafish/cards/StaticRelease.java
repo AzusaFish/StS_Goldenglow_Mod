@@ -17,13 +17,14 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 public class StaticRelease extends CustomCard {
     public static final String ID = "AzusaFish:StaticRelease";
     public static final String IMG_PATH = "images/cards/StaticRelease.png";
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
     private static final int COST = 1;
     private static final int DAMAGE = 6;
     private static final int UPGRADE_PLUS_DMG = 3;
 
     public StaticRelease() {
-        super(ID, "Static Release", IMG_PATH, COST, "Deal !D! damage. Channel a Spark",
+        super(ID, cardStrings.NAME, IMG_PATH, COST, cardStrings.DESCRIPTION, 
                 CardType.ATTACK, 
                 GGEnums.GG_CARD_COLOR, // 绑定粉色
                 CardRarity.COMMON, 

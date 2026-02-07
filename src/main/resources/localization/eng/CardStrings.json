@@ -1,7 +1,7 @@
 {
     "AzusaFish:StaticRelease": {
         "NAME": "Static Release",
-        "DESCRIPTION": "Deal !D! damage. Channel a Spark"
+        "DESCRIPTION": "Deal !D! damage. Channel a Spark."
     },
     "AzusaFish:Strike": {
         "NAME": "Strike",

@@ -34,7 +34,7 @@ public class GoldenglowCharacter extends CustomPlayer {
                 MY_CHARACTER_SHOULDER_1,
                 MY_CHARACTER_CORPSE,
                 getLoadout(), 
-                0.0F, -100.0F, 220.0F, 290.0F, 
+                0.0F, 0.0F, 220.0F, 290.0F, 
                 new EnergyManager(3)); // 初始 3 费
     }
 

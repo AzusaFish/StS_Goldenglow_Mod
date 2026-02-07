@@ -12,17 +12,15 @@ import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.localization.OrbStrings; // 确保导入了这个
+import com.megacrit.cardcrawl.localization.OrbStrings;
 
 import java.nio.charset.StandardCharsets;
 
 @SpireInitializer
 public class GoldenglowMod implements EditCharactersSubscriber, EditCardsSubscriber, EditStringsSubscriber, EditKeywordsSubscriber {
 
-    // 颜色定义
     public static final Color PINK_COLOR = new Color(1.0f, 0.46f, 0.66f, 1.0f);
 
-    // 资源路径
     private static final String ATTACK_BG_512 = "images/512/bg_attack_pink.png";
     private static final String SKILL_BG_512 = "images/512/bg_skill_pink.png";
     private static final String POWER_BG_512 = "images/512/bg_power_pink.png";
@@ -34,7 +32,6 @@ public class GoldenglowMod implements EditCharactersSubscriber, EditCardsSubscri
     private static final String ORB_1024 = "images/1024/orb_large.png";
     private static final String ORB_TEXT = "images/1024/orb_text.png";
 
-    // 角色图片
     private static final String CHAR_BUTTON = "images/char/goldenglow/button.png";
     private static final String CHAR_PORTRAIT = "images/char/goldenglow/portrait.png";
 
@@ -73,21 +70,36 @@ public class GoldenglowMod implements EditCharactersSubscriber, EditCardsSubscri
 
     @Override
     public void receiveEditKeywords() {
-        Gson gson = new Gson();
-        String json = Gdx.files.internal("localization/eng/KeywordStrings.json").readString(String.valueOf(StandardCharsets.UTF_8));
+        // 1. 打印：证明方法被调用了
+        System.out.println("========= GGLMOD: KEYWORD METHOD CALLED =========");
         
-        // 关键修复点：这里使用的是下面定义的内部类 Keyword，不再依赖 stslib
-        Keyword[] keywords = gson.fromJson(json, Keyword[].class);
+        Gson gson = new Gson();
+        String path = "localization/eng/KeywordStrings.json";
+        
+        try {
+            // 2. 打印：尝试读取文件
+            String json = Gdx.files.internal(path).readString(String.valueOf(StandardCharsets.UTF_8));
+            System.out.println("GGLMOD: JSON Content read: " + json); // 看看读到了什么
 
-        if (keywords != null) {
-            for (Keyword keyword : keywords) {
-                BaseMod.addKeyword("azusafish", keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
+            Keyword[] keywords = gson.fromJson(json, Keyword[].class);
+
+            if (keywords != null) {
+                for (Keyword keyword : keywords) {
+                    System.out.println("GGLMOD: Registering Keyword -> " + keyword.PROPER_NAME);
+                    // 使用 null 作为 modId 以注册全局关键字，确保 "Spark" 能被正确识别
+                    BaseMod.addKeyword(null, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
+                }
+            } else {
+                System.out.println("GGLMOD: Keywords array is NULL!");
             }
+        } catch (Exception e) {
+            // 3. 打印：如果有报错，直接打印出来
+            System.out.println("GGLMOD: ERROR loading keywords!");
+            e.printStackTrace();
         }
     }
-    
-    // 👇👇👇 这就是我们手写的微型类，用来替代 StSLib 的功能
-    static class Keyword {
+
+    public static class Keyword {
         public String PROPER_NAME;
         public String[] NAMES;
         public String DESCRIPTION;

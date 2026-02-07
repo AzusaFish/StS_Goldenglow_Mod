@@ -23,7 +23,7 @@ public class Strike extends CustomCard {
         super(ID, "Strike", IMG_PATH, COST, "Deal !D! damage.", 
               CardType.ATTACK, 
               GGEnums.GG_CARD_COLOR, // ✅ 重点：绑定粉色
-              CardRarity.BASIC,      // ✅ 稀有度：基础
+              CardRarity.COMMON,      // 暂时改为 COMMON 以防止奖励池死循环
               CardTarget.ENEMY);
 
         this.baseDamage = DAMAGE;
