@@ -10,5 +10,17 @@
     "AzusaFish:Defend": {
         "NAME": "Defend",
         "DESCRIPTION": "Gain !B! Block."
+    },
+    "AzusaFish:ChargeDefense": {
+        "NAME": "Charge Defense",
+        "DESCRIPTION": "Gain !B! Block. Channel a Spark."
+    },
+    "AzusaFish:StaticShield": {
+        "NAME": "Static Shield",
+        "DESCRIPTION": "Gain !B! Block. Gain !M! additional Block for each Spark you have."
+    },
+    "AzusaFish:DetonationProtocol": {
+        "NAME": "Detonation Protocol",
+        "DESCRIPTION": "Exhaust. Remove all Current Mark. Deal !M! damage for each stack removed."
     }
 }

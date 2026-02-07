@@ -65,6 +65,10 @@ public class GoldenglowMod implements EditCharactersSubscriber, EditCardsSubscri
         BaseMod.addCard(new com.azusafish.cards.Strike());
         BaseMod.addCard(new com.azusafish.cards.Defend());
         BaseMod.addCard(new StaticRelease());
+        // 注册新卡
+        BaseMod.addCard(new com.azusafish.cards.ChargeDefense());
+        BaseMod.addCard(new com.azusafish.cards.StaticShield());
+        BaseMod.addCard(new com.azusafish.cards.DetonationProtocol());
     }
     
     @Override
