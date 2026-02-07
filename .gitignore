@@ -1,0 +1,32 @@
+# --- Maven 编译产物 (必须忽略) ---
+target/
+*.log
+
+# --- IDE 配置文件 (不要上传你的个人配置) ---
+# IntelliJ IDEA
+.idea/
+*.iml
+out/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Eclipse
+.settings/
+.classpath
+.project
+bin/
+
+# --- Java 依赖与二进制文件 ---
+# 忽略所有的 .jar 文件 (防止把 desktop-1.0.jar 或 ModTheSpire.jar 传上去)
+*.jar
+
+# --- 操作系统垃圾文件 ---
+.DS_Store
+Thumbs.db
+
+# --- 杀戮尖塔模组开发特定 ---
+# 如果你之前解包了游戏的图片放在根目录，记得忽略它
+# (假设你解包的文件夹叫 decompiled 或 images_backup，如果没有就无视这行)
+decompiled/

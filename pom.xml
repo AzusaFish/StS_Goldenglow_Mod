@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.azusafish</groupId>
+    <artifactId>StS_Mod_VSC</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+<dependencies>
+        <dependency>
+            <groupId>com.megacrit.cardcrawl</groupId>
+            <artifactId>slaythespire</artifactId>
+            <version>01-23-2019</version>
+            <scope>system</scope>
+            <systemPath>D:/SteamLibrary/steamapps/common/SlayTheSpire/desktop-1.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.evacipated.cardcrawl</groupId>
+            <artifactId>modthespire</artifactId>
+            <version>3.16.0</version>
+            <scope>system</scope>
+            <systemPath>D:/SteamLibrary/steamapps/workshop/content/646570/1605060445/ModTheSpire.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>basemod</groupId>
+            <artifactId>basemod</artifactId>
+            <version>5.32.0</version>
+            <scope>system</scope>
+            <systemPath>D:/SteamLibrary/steamapps/workshop/content/646570/1605833019/BaseMod.jar</systemPath>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>Arknights_GoldenGlow</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*.psd</exclude> </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,9 @@
+{
+  "AzusaFish:LaptopRelic": {
+    "NAME": "Dev Laptop",
+    "FLAVOR": "It smells like coffee and bugs.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, gain #b1 [E] and draw #b1 card."
+    ]
+  }
+}

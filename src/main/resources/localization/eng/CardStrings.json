@@ -1,0 +1,14 @@
+{
+    "AzusaFish:StaticRelease": {
+        "NAME": "Static Release",
+        "DESCRIPTION": "Deal !D! damage. Channel a Spark"
+    },
+    "AzusaFish:Strike": {
+        "NAME": "Strike",
+        "DESCRIPTION": "Deal !D! damage."
+    },
+    "AzusaFish:Defend": {
+        "NAME": "Defend",
+        "DESCRIPTION": "Gain !B! Block."
+    }
+}

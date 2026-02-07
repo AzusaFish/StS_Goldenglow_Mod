@@ -1,0 +1,10 @@
+{
+    "AzusaFish:Spark": {
+        "NAME": "Spark",
+        "DESCRIPTION": [
+        "End of Turn: Deal #b",
+        " damage to a random enemy. NL Evoke: Deal #b",
+        " damage to a random enemy."
+        ]
+    }
+}

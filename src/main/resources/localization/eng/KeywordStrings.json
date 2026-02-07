@@ -1,0 +1,10 @@
+[
+    {
+        "PROPER_NAME": "Spark",
+        "NAMES": [
+        "spark",
+        "sparks"
+        ],
+        "DESCRIPTION": "A specialized Orb for Goldenglow. NL End of Turn: Deal #b3 damage. NL Evoke: Deal #b10 damage."
+    }
+]
