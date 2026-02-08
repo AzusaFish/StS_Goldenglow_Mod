@@ -1,7 +1,9 @@
 package com.azusafish;
 
 import basemod.abstracts.CustomPlayer;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -10,6 +12,7 @@ import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
@@ -26,16 +29,40 @@ public class GoldenglowCharacter extends CustomPlayer {
     // 选人界面的大立绘 (1920x1200)
     private static final String MY_CHARACTER_PORTRAIT = "images/char/goldenglow/portrait.png";
 
+    // 动画相关
+    private Texture[] animationFrames;
+    private float animationTimer = 0.0f;
+    private float frameDuration = 1.0f / 20.0f; // 20 FPS
+
     public GoldenglowCharacter(String name) {
         super(name, GGEnums.GOLDENGLOW, null, null, null, (String)null);
         
-        initializeClass(MY_CHARACTER_SHOULDER_2, 
+        initializeClass(MY_CHARACTER_SHOULDER_2,
                 MY_CHARACTER_SHOULDER_2,
                 MY_CHARACTER_SHOULDER_1,
                 MY_CHARACTER_CORPSE,
-                getLoadout(), 
-                0.0F, 0.0F, 220.0F, 290.0F, 
+                getLoadout(),
+                0.0F, 0.0F, 220.0F, 290.0F,
                 new EnergyManager(3)); // 初始 3 费
+
+        // 加载呼吸动画帧
+        this.animationFrames = new Texture[159];
+        for (int i = 0; i < 159; i++) {
+            // 文件名为 ezgif-frame-001.png 到 ezgif-frame-159.png
+            String path = "images/char/goldenglow/video/ezgif-frame-" + String.format("%03d", i + 1) + ".png";
+            this.animationFrames[i] = ImageMaster.loadImage(path);
+        }
+    }
+    
+    @Override
+    public void update() {
+        super.update();
+        // 更新呼吸动画
+        if (this.animationFrames != null && this.animationFrames.length > 0) {
+            this.animationTimer += Gdx.graphics.getDeltaTime();
+            int frameIndex = (int) (this.animationTimer / this.frameDuration) % this.animationFrames.length;
+            this.img = this.animationFrames[frameIndex];
+        }
     }
 
     // 角色面板信息
@@ -52,7 +79,7 @@ public class GoldenglowCharacter extends CustomPlayer {
     public ArrayList<String> getStartingDeck() {
         ArrayList<String> retVal = new ArrayList<>();
         
-        retVal.add("AzusaFish:StaticRelease"); // 你的静电释放
+        retVal.add("AzusaFish:StaticRelease"); 
         retVal.add("AzusaFish:StaticRelease"); 
         
         retVal.add("AzusaFish:Strike");
@@ -72,7 +99,6 @@ public class GoldenglowCharacter extends CustomPlayer {
     @Override
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
-        // 暂时使用铁甲战士的燃烧之血
         retVal.add("AzusaFish:Sparkles");
         return retVal;
     }

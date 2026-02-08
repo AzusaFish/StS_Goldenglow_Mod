@@ -6,5 +6,25 @@
         " static charge. (Max #b",
         ") NL Detonate when a Spark is Evoked."
         ]
+    },
+    "AzusaFish:Precision": {
+        "NAME": "Precision",
+        "DESCRIPTIONS": [
+            "Your Sparks ignore #b",
+            "% of enemy Block when Evoked."
+        ]
+    },
+    "AzusaFish:FullPowerMode": {
+        "NAME": "Full Power Mode",
+        "DESCRIPTIONS": [
+            "At the end of your turn, lose #b",
+            " Precision."
+        ]
+    },
+    "AzusaFish:Meltdown": {
+        "NAME": "Meltdown",
+        "DESCRIPTIONS": [
+            "Spark damage is doubled this turn. At the start of your next turn, lose all Sparks and 1 Energy."
+        ]
     }
 }

@@ -22,5 +22,42 @@
     "AzusaFish:DetonationProtocol": {
         "NAME": "Detonation Protocol",
         "DESCRIPTION": "Exhaust. Remove all Current Mark. Deal !M! damage for each stack removed."
+    },
+    "AzusaFish:DiffusedCurrent": {
+        "NAME": "Diffused Current",
+        "DESCRIPTION": "Deal !D! damage to ALL enemies. Channel 1 Spark."
+    },
+    "AzusaFish:PrecisionGuidance": {
+        "NAME": "Precision Guidance",
+        "DESCRIPTION": "Gain !M! Precision."
+    },
+    "AzusaFish:ArtsStorm": {
+        "NAME": "Arts Storm",
+        "DESCRIPTION": "Deal !D! damage. Deal !M! additional damage for each stack of Precision."
+    },
+    "AzusaFish:FullPowerMode": {
+        "NAME": "Full Power Mode",
+        "DESCRIPTION": "Gain !M! Precision. At the end of your turn, lose !M! Precision."
+    },
+    "AzusaFish:Beacon": {
+        "NAME": "Beacon",
+        "DESCRIPTION": "Apply !M! Current Mark. NL Draw 1 card."
+    },
+    "AzusaFish:DroneRecycle": {
+        "NAME": "Drone Recycle",
+        "DESCRIPTION": "Remove (without Evoking) your first Spark. Gain [E] [E].",
+        "UPGRADE_DESCRIPTION": "Remove (without Evoking) your first Spark. Gain [E] [E]. NL Draw 1 card."
+    },
+    "AzusaFish:InductiveChain": {
+        "NAME": "Inductive Chain",
+        "DESCRIPTION": "Deal !D! damage. If the target has Current Mark, apply !M! Current Mark to ALL other enemies."
+    },
+    "AzusaFish:Meltdown": {
+        "NAME": "Meltdown",
+        "DESCRIPTION": "Gain [E] [E] . Spark damage is doubled this turn. NL At the start of your next turn, lose all Sparks (without Evoking) and lose [E] ."
+    },
+    "AzusaFish:CrystallineShine": {
+        "NAME": "Crystalline Shine",
+        "DESCRIPTION": "Deal !D! damage to ALL enemies. Apply !M! Current Mark to ALL enemies. Trigger the passive effect of all Sparks."
     }
 }

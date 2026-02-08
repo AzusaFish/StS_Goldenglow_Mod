@@ -1,6 +1,8 @@
 package com.azusafish.orbs;
 
 import com.azusafish.powers.CurrentMarkPower; 
+import com.azusafish.powers.PrecisionPower;
+import com.azusafish.powers.MeltdownPower;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -90,6 +92,15 @@ public class SparkOrb extends AbstractOrb {
     }
 
     @Override
+    public void applyFocus() {
+        super.applyFocus();
+        if (AbstractDungeon.player.hasPower(MeltdownPower.POWER_ID)) {
+            this.passiveAmount *= 2;
+            this.evokeAmount *= 2;
+        }
+    }
+
+    @Override
     public void updateDescription() {
         this.applyFocus();
         // 描述需要匹配 OrbStrings.json
@@ -102,6 +113,14 @@ public class SparkOrb extends AbstractOrb {
         if (this.target != null) {
             int totalDamage = this.evokeAmount;
             
+            // 检查 Precision (精准) 层数
+            float ignoreRatio = 0.0f;
+            if (AbstractDungeon.player.hasPower(PrecisionPower.POWER_ID)) {
+                int precisionStacks = AbstractDungeon.player.getPower(PrecisionPower.POWER_ID).amount;
+                if (precisionStacks > 10) precisionStacks = 10;
+                ignoreRatio = precisionStacks * 0.1f;
+            }
+
             // 检查易伤层数
             if (this.target.hasPower(CurrentMarkPower.POWER_ID)) {
                 int marks = this.target.getPower(CurrentMarkPower.POWER_ID).amount;
@@ -116,9 +135,45 @@ public class SparkOrb extends AbstractOrb {
             AbstractDungeon.actionManager.addToTop(new SFXAction("ORB_LIGHTNING_EVOKE"));
             AbstractDungeon.actionManager.addToTop(new VFXAction(new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.PLASMA), 0.1F));
             
-            // 造成最终伤害
-            DamageInfo info = new DamageInfo(AbstractDungeon.player, totalDamage, DamageInfo.DamageType.THORNS);
-            AbstractDungeon.actionManager.addToBottom(new DamageAction(this.target, info, AbstractGameAction.AttackEffect.SLASH_HEAVY));
+            // 造成最终伤害 - 执行穿透/忽略格挡逻辑
+            final int finalDamage = totalDamage;
+            final float finalIgnoreRatio = ignoreRatio;
+            final AbstractMonster finalTarget = this.target;
+
+            // 使用自定义 Action 或者直接在这里执行逻辑 (这里使用匿名 Action 以确保执行顺序在 VFX 之后)
+            AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    if (finalTarget == null || finalTarget.isDeadOrEscaped()) {
+                        this.isDone = true;
+                        return;
+                    }
+
+                    // 临时减少敌人的格挡
+                    int originalBlock = finalTarget.currentBlock;
+                    int ignoredBlock = (int) (originalBlock * finalIgnoreRatio);
+                    // 确保不会减成负数，虽然 int 应该是 0
+                    if (ignoredBlock > originalBlock) ignoredBlock = originalBlock; 
+                    
+                    // 扣除格挡 (模拟忽略)
+                    finalTarget.currentBlock = originalBlock - ignoredBlock;
+                    
+                    // 造成伤害
+                    DamageInfo info = new DamageInfo(AbstractDungeon.player, finalDamage, DamageInfo.DamageType.THORNS);
+                    finalTarget.damage(info);
+                    
+                    // 恢复格挡 (因为只是 Ignore，不是 Destroy)
+                    // 注意：如果伤害把剩下的格挡打掉了，damage() 会把 currentBlock 变成 0 (或剩余值)
+                    // 所以这里的逻辑是：把刚才扣掉的 ignoredBlock 加回来。
+                    // 但是如果敌人被打死了，就不需要加了。
+                    if (!finalTarget.isDeadOrEscaped()) {
+                         // 将忽略的那部分加回去，模拟"穿透"了它，但没有消耗它
+                        finalTarget.currentBlock += ignoredBlock;
+                    }
+                    
+                    this.isDone = true;
+                }
+            });
         }
     }
 
